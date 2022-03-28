@@ -20,45 +20,61 @@ class RegisterQualificationsViewController: BaseViewController {
     let art = UITextField()
     let average = UILabel()
     let saveQualification = UIButton()
+    let subjectsPicker = UIPickerView()
+    
+    let viewModel = RegisterViewModel()
+    var isGrade = true
+    var textFieldSelect: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = titleNav
-        setNavBar(type: .add, action: #selector(addButtonAction))
+        subjectsPicker.delegate = self
+        subjectsPicker.dataSource = self
+        numberGrade.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textFieldGrade(textField:))))
     }
     
     override func viewDidLayoutSubviews() {
         let screen = UIScreen.main.bounds
         let name: UITextField = {
             nameStudent.configureTextField(keyboard: .alphabet, placeHolder: "Nombre del estudiante")
+            nameStudent.tag = 0
+            nameStudent.delegate = self
             return nameStudent
         }()
         let lastName: UITextField = {
             lastNameStudent.configureTextField(keyboard: .alphabet, placeHolder: "Apellido del estudiante")
+            lastNameStudent.tag = 1
             return lastNameStudent
         }()
         let grade: UITextField = {
             numberGrade.configureTextField(keyboard: .numberPad, placeHolder: "Grado")
+            numberGrade.inputView = subjectsPicker
+            numberGrade.tag = 2
             return numberGrade
         }()
         let math: UITextField = {
             mathematics.configureTextField(keyboard: .numberPad, placeHolder: "Matemáticas")
+            mathematics.tag = 3
            return mathematics
         }()
         let history: UITextField = {
             self.history.configureTextField(keyboard: .numberPad, placeHolder: "Historia")
+            self.history.tag = 4
             return self.history
         }()
         let science: UITextField = {
             self.science.configureTextField(keyboard: .numberPad, placeHolder: "Ciencias")
+            self.science.tag = 5
             return self.science
         }()
         let art: UITextField = {
             self.art.configureTextField(keyboard: .numberPad, placeHolder: "Artes")
+            self.art.tag = 6
             return self.art
         }()
         let averageStudent: UILabel = {
-            average.text = "El priomedio se calculará en automático"
+            average.text = "El priomedio se calculará en automático al llenar todas las materias"
             average.textAlignment = .center
             return self.average
         }()
@@ -127,7 +143,68 @@ class RegisterQualificationsViewController: BaseViewController {
         ])
     }
     
-    @objc func addButtonAction(){
-        print("💅🏾💅🏾💅🏾💅🏾💅🏾💅🏾💅🏾💅🏾")
+    @objc func textFieldGrade(textField: UITextField){
+        isGrade = true
+        textFieldSelect = textField
+        textField.inputView = subjectsPicker
     }
+    
+    @objc func textFieldSubs(textField: UITextField){
+        isGrade = false
+        textFieldSelect = textField
+    }
+    
+    @objc func showAverage() {
+        let qualifications = [mathematics, history, science, art]
+        let show = checkTextFields(textFields: qualifications)
+        if show {
+            let average = checkAverage(subs: qualifications)
+            DispatchQueue.main.async {
+                self.average.text = average.description
+            }
+        }
+    }
+    
+    @objc func addNewRegister(){
+        let save = checkTextFields(textFields: [nameStudent, lastNameStudent, numberGrade, mathematics, history, science, art])
+        if save {
+            let average = checkAverage(subs: [mathematics, history, science, art])
+            viewModel.saveRegister(name: nameStudent.text ?? "",
+                                   lastName: lastNameStudent.text ?? "",
+                                   grade: numberGrade.text ?? "",
+                                   math: mathematics.text ?? "",
+                                   history: history.text ?? "",
+                                   science: science.text ?? "",
+                                   art: art.text ?? "",
+                                   average: String(average)) {
+                for case let textField as UITextField in self.view.subviews {
+                    textField.text = nil
+                }
+            }
+            self.average.text = "El priomedio se calculará en automático al llenar todas las materias"
+        }
+    }
+}
+
+extension RegisterQualificationsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return viewModel.grades.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return viewModel.grades[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+            numberGrade.text = viewModel.grades[row]
+    }
+}
+
+extension RegisterQualificationsViewController: UITextFieldDelegate {
+    
 }
