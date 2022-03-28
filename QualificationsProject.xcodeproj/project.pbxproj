@@ -9,19 +9,19 @@
 /* Begin PBXBuildFile section */
 		721FAD5E27F14A79000D85C3 /* SDCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721FAD5D27F14A79000D85C3 /* SDCTextField.swift */; };
 		723AD6C127F2052500901753 /* QualificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723AD6C027F2052500901753 /* QualificationTableViewCell.swift */; };
+		723AD6C427F212FB00901753 /* QualificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723AD6C327F212FB00901753 /* QualificationsModel.swift */; };
+		723AD6C627F21FB600901753 /* QualificartionsModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723AD6C527F21FB600901753 /* QualificartionsModelView.swift */; };
 		727CD61927F0624B0085D457 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 727CD61827F0624B0085D457 /* Realm */; };
 		727CD61B27F0624B0085D457 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 727CD61A27F0624B0085D457 /* RealmSwift */; };
 		727CD61D27F062A90085D457 /* QualificationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727CD61C27F062A90085D457 /* QualificationRealm.swift */; };
 		727CD62127F063AE0085D457 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727CD62027F063AE0085D457 /* RegisterViewModel.swift */; };
 		72A270C827F1691100514822 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A270C627F1691100514822 /* RegisterViewController.swift */; };
-		72A270C927F1691100514822 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A270C727F1691100514822 /* RegisterViewController.xib */; };
 		72BD208627EFD4E70004A68B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD208527EFD4E70004A68B /* AppDelegate.swift */; };
 		72BD208827EFD4E70004A68B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD208727EFD4E70004A68B /* SceneDelegate.swift */; };
 		72BD208F27EFD4E80004A68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72BD208E27EFD4E80004A68B /* Assets.xcassets */; };
 		72BD209227EFD4E80004A68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72BD209027EFD4E80004A68B /* LaunchScreen.storyboard */; };
 		72BD209B27EFD68A0004A68B /* QualificationsTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD209A27EFD68A0004A68B /* QualificationsTabBar.swift */; };
 		72BD20A627EFD8330004A68B /* QualificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20A427EFD8330004A68B /* QualificationsViewController.swift */; };
-		72BD20A727EFD8330004A68B /* QualificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BD20A527EFD8330004A68B /* QualificationsViewController.xib */; };
 		72BD20AE27EFD8FF0004A68B /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20AD27EFD8FF0004A68B /* DataPersistence.swift */; };
 		72BD20B027EFE7F00004A68B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20AF27EFE7F00004A68B /* BaseViewController.swift */; };
 		72BD20B427F044C90004A68B /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20B327F044C90004A68B /* UITextFieldExtension.swift */; };
@@ -30,10 +30,11 @@
 /* Begin PBXFileReference section */
 		721FAD5D27F14A79000D85C3 /* SDCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDCTextField.swift; sourceTree = "<group>"; };
 		723AD6C027F2052500901753 /* QualificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationTableViewCell.swift; sourceTree = "<group>"; };
+		723AD6C327F212FB00901753 /* QualificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationsModel.swift; sourceTree = "<group>"; };
+		723AD6C527F21FB600901753 /* QualificartionsModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificartionsModelView.swift; sourceTree = "<group>"; };
 		727CD61C27F062A90085D457 /* QualificationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationRealm.swift; sourceTree = "<group>"; };
 		727CD62027F063AE0085D457 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		72A270C627F1691100514822 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		72A270C727F1691100514822 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		72BD208227EFD4E70004A68B /* QualificationsProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QualificationsProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BD208527EFD4E70004A68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72BD208727EFD4E70004A68B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 		72BD209327EFD4E80004A68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72BD209A27EFD68A0004A68B /* QualificationsTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationsTabBar.swift; sourceTree = "<group>"; };
 		72BD20A427EFD8330004A68B /* QualificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationsViewController.swift; sourceTree = "<group>"; };
-		72BD20A527EFD8330004A68B /* QualificationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QualificationsViewController.xib; sourceTree = "<group>"; };
 		72BD20AD27EFD8FF0004A68B /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
 		72BD20AF27EFE7F00004A68B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		72BD20B327F044C90004A68B /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				72A270C627F1691100514822 /* RegisterViewController.swift */,
-				72A270C727F1691100514822 /* RegisterViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +157,7 @@
 		72BD20A127EFD7680004A68B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				723AD6C527F21FB600901753 /* QualificartionsModelView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -167,7 +167,6 @@
 			children = (
 				723AD6C227F2052900901753 /* Cell */,
 				72BD20A427EFD8330004A68B /* QualificationsViewController.swift */,
-				72BD20A527EFD8330004A68B /* QualificationsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +174,7 @@
 		72BD20A327EFD7700004A68B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				723AD6C327F212FB00901753 /* QualificationsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,8 +272,6 @@
 			files = (
 				72BD209227EFD4E80004A68B /* LaunchScreen.storyboard in Resources */,
 				72BD208F27EFD4E80004A68B /* Assets.xcassets in Resources */,
-				72BD20A727EFD8330004A68B /* QualificationsViewController.xib in Resources */,
-				72A270C927F1691100514822 /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,11 +287,13 @@
 				72A270C827F1691100514822 /* RegisterViewController.swift in Sources */,
 				72BD20B427F044C90004A68B /* UITextFieldExtension.swift in Sources */,
 				72BD20A627EFD8330004A68B /* QualificationsViewController.swift in Sources */,
+				723AD6C627F21FB600901753 /* QualificartionsModelView.swift in Sources */,
 				72BD208627EFD4E70004A68B /* AppDelegate.swift in Sources */,
 				723AD6C127F2052500901753 /* QualificationTableViewCell.swift in Sources */,
 				72BD20AE27EFD8FF0004A68B /* DataPersistence.swift in Sources */,
 				72BD208827EFD4E70004A68B /* SceneDelegate.swift in Sources */,
 				721FAD5E27F14A79000D85C3 /* SDCTextField.swift in Sources */,
+				723AD6C427F212FB00901753 /* QualificationsModel.swift in Sources */,
 				72BD20B027EFE7F00004A68B /* BaseViewController.swift in Sources */,
 				72BD209B27EFD68A0004A68B /* QualificationsTabBar.swift in Sources */,
 			);

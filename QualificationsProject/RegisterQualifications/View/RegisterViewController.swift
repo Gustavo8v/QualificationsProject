@@ -83,7 +83,7 @@ class RegisterQualificationsViewController: BaseViewController {
         }()
         let button: UIButton = {
             saveQualification.backgroundColor = .lightGray
-            saveQualification.isEnabled = false
+            //saveQualification.isEnabled = false
             saveQualification.layer.cornerRadius = 25
             saveQualification.setTitleColor(.white, for: .normal)
             saveQualification.setTitle("Guardar Calificación", for: .normal)
@@ -153,11 +153,11 @@ class RegisterQualificationsViewController: BaseViewController {
     }
     
     @objc func changeStateButton(_ textField: UITextField){
-        var enabled = true
+        //var enabled = true
         var color = UIColor.systemBlue
         for case let textField as SDCTextField in scrollView.subviews {
             if textField.text == "" {
-                enabled = false
+                //enabled = false
                 color = .lightGray
             }
         }
@@ -169,7 +169,7 @@ class RegisterQualificationsViewController: BaseViewController {
                 self.average.text = av
             }
         }
-        self.saveQualification.isEnabled = enabled
+        //self.saveQualification.isEnabled = enabled
         DispatchQueue.main.async {
             self.saveQualification.backgroundColor = color
         }
