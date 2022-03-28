@@ -11,13 +11,13 @@ class RegisterQualificationsViewController: BaseViewController {
     
     //Elements UI
     let scrollView = UIScrollView()
-    let nameStudent = UITextField()
-    let lastNameStudent = UITextField()
-    let numberGrade = UITextField()
-    let mathematics = UITextField()
-    let history = UITextField()
-    let science = UITextField()
-    let art = UITextField()
+    let nameStudent = SDCTextField()
+    let lastNameStudent = SDCTextField()
+    let numberGrade = SDCTextField()
+    let mathematics = SDCTextField()
+    let history = SDCTextField()
+    let science = SDCTextField()
+    let art = SDCTextField()
     let average = UILabel()
     let saveQualification = UIButton()
     let subjectsPicker = UIPickerView()
@@ -31,60 +31,66 @@ class RegisterQualificationsViewController: BaseViewController {
         navigationItem.title = titleNav
         subjectsPicker.delegate = self
         subjectsPicker.dataSource = self
-        numberGrade.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textFieldGrade(textField:))))
     }
     
     override func viewDidLayoutSubviews() {
         let screen = UIScreen.main.bounds
-        let name: UITextField = {
+        let name: SDCTextField = {
             nameStudent.configureTextField(keyboard: .alphabet, placeHolder: "Nombre del estudiante")
-            nameStudent.tag = 0
-            nameStudent.delegate = self
+            nameStudent.valueType = .fullName
             return nameStudent
         }()
-        let lastName: UITextField = {
+        let lastName: SDCTextField = {
             lastNameStudent.configureTextField(keyboard: .alphabet, placeHolder: "Apellido del estudiante")
-            lastNameStudent.tag = 1
+            nameStudent.valueType = .fullName
             return lastNameStudent
         }()
-        let grade: UITextField = {
+        let grade: SDCTextField = {
             numberGrade.configureTextField(keyboard: .numberPad, placeHolder: "Grado")
             numberGrade.inputView = subjectsPicker
-            numberGrade.tag = 2
             return numberGrade
         }()
-        let math: UITextField = {
+        let math: SDCTextField = {
             mathematics.configureTextField(keyboard: .numberPad, placeHolder: "Matemáticas")
-            mathematics.tag = 3
+            mathematics.valueType = .onlyNumbers
+            mathematics.maxLength = 2
            return mathematics
         }()
-        let history: UITextField = {
+        let history: SDCTextField = {
             self.history.configureTextField(keyboard: .numberPad, placeHolder: "Historia")
-            self.history.tag = 4
+            self.history.valueType = .onlyNumbers
+            self.history.maxLength = 2
             return self.history
         }()
-        let science: UITextField = {
+        let science: SDCTextField = {
             self.science.configureTextField(keyboard: .numberPad, placeHolder: "Ciencias")
-            self.science.tag = 5
+            self.science.valueType = .onlyNumbers
+            self.science.maxLength = 2
             return self.science
         }()
-        let art: UITextField = {
+        let art: SDCTextField = {
             self.art.configureTextField(keyboard: .numberPad, placeHolder: "Artes")
-            self.art.tag = 6
+            self.art.valueType = .onlyNumbers
+            self.art.maxLength = 2
             return self.art
         }()
         let averageStudent: UILabel = {
             average.text = "El priomedio se calculará en automático al llenar todas las materias"
+            average.adjustsFontSizeToFitWidth = true
+            average.numberOfLines = 2
             average.textAlignment = .center
             return self.average
         }()
         let button: UIButton = {
-            saveQualification.backgroundColor = .systemBlue
+            saveQualification.backgroundColor = .lightGray
+            saveQualification.isEnabled = false
             saveQualification.layer.cornerRadius = 25
             saveQualification.setTitleColor(.white, for: .normal)
             saveQualification.setTitle("Guardar Calificación", for: .normal)
+            saveQualification.addTarget(self, action: #selector(addNewRegister), for: .touchUpInside)
             return saveQualification
         }()
+        tagTextField(textFields: [name, lastName, grade, math, history, science, art], view: self)
         addViewsCustom(view: view, views: [scrollView])
         addViewsCustom(view: scrollView, views: [name, lastName, grade, math, history, science, art, averageStudent, button])
         NSLayoutConstraint.activate([
@@ -141,17 +147,37 @@ class RegisterQualificationsViewController: BaseViewController {
             button.widthAnchor.constraint(equalToConstant: screen.width * 0.90),
             button.heightAnchor.constraint(equalToConstant: 45)
         ])
+        for case let textField as SDCTextField in scrollView.subviews {
+            textField.addTarget(self, action: #selector(changeStateButton(_:)), for: .editingChanged)
+        }
     }
     
-    @objc func textFieldGrade(textField: UITextField){
-        isGrade = true
-        textFieldSelect = textField
-        textField.inputView = subjectsPicker
-    }
-    
-    @objc func textFieldSubs(textField: UITextField){
-        isGrade = false
-        textFieldSelect = textField
+    @objc func changeStateButton(_ textField: UITextField){
+        var aver = 0.0
+        var count = 4
+        var enabled = true
+        var color = UIColor.systemBlue
+        for case let textField as SDCTextField in scrollView.subviews {
+            if textField.text == "" {
+                enabled = false
+                color = .lightGray
+            }
+        }
+        [mathematics, history, science, art].forEach({
+            if $0.text != "" {
+                count -= 1
+                aver = aver + (Double($0.text ?? "") ?? .zero)
+                if count == 0 {
+                    DispatchQueue.main.async {
+                        self.average.text = Double(aver/4).description
+                    }
+                }
+            }
+        })
+        self.saveQualification.isEnabled = enabled
+        DispatchQueue.main.async {
+            self.saveQualification.backgroundColor = color
+        }
     }
     
     @objc func showAverage() {
@@ -177,7 +203,7 @@ class RegisterQualificationsViewController: BaseViewController {
                                    science: science.text ?? "",
                                    art: art.text ?? "",
                                    average: String(average)) {
-                for case let textField as UITextField in self.view.subviews {
+                for case let textField as SDCTextField in self.scrollView.subviews {
                     textField.text = nil
                 }
             }
@@ -197,14 +223,29 @@ extension RegisterQualificationsViewController: UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return viewModel.grades[row]
+        return viewModel.grades[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            numberGrade.text = viewModel.grades[row]
+        numberGrade.text = viewModel.grades[row]
+        numberGrade.resignFirstResponder()
     }
 }
 
 extension RegisterQualificationsViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // Verify all the conditions
+        if let sdcTextField = textField as? SDCTextField {
+            return sdcTextField.verifyFields(shouldChangeCharactersIn: range, replacementString: string)
+        } else {
+            return false
+        }
+    }
 }

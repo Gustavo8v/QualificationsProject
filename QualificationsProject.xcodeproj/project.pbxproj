@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		721FAD5E27F14A79000D85C3 /* SDCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721FAD5D27F14A79000D85C3 /* SDCTextField.swift */; };
 		727CD61927F0624B0085D457 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 727CD61827F0624B0085D457 /* Realm */; };
 		727CD61B27F0624B0085D457 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 727CD61A27F0624B0085D457 /* RealmSwift */; };
 		727CD61D27F062A90085D457 /* QualificationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727CD61C27F062A90085D457 /* QualificationRealm.swift */; };
@@ -19,13 +20,13 @@
 		72BD20A627EFD8330004A68B /* QualificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20A427EFD8330004A68B /* QualificationsViewController.swift */; };
 		72BD20A727EFD8330004A68B /* QualificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BD20A527EFD8330004A68B /* QualificationsViewController.xib */; };
 		72BD20AA27EFD8570004A68B /* RegisterQualificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20A827EFD8570004A68B /* RegisterQualificationsViewController.swift */; };
-		72BD20AB27EFD8570004A68B /* RegisterQualificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BD20A927EFD8570004A68B /* RegisterQualificationsViewController.xib */; };
 		72BD20AE27EFD8FF0004A68B /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20AD27EFD8FF0004A68B /* DataPersistence.swift */; };
 		72BD20B027EFE7F00004A68B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20AF27EFE7F00004A68B /* BaseViewController.swift */; };
 		72BD20B427F044C90004A68B /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD20B327F044C90004A68B /* UITextFieldExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		721FAD5D27F14A79000D85C3 /* SDCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDCTextField.swift; sourceTree = "<group>"; };
 		727CD61C27F062A90085D457 /* QualificationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationRealm.swift; sourceTree = "<group>"; };
 		727CD62027F063AE0085D457 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		72BD208227EFD4E70004A68B /* QualificationsProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QualificationsProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,7 +39,6 @@
 		72BD20A427EFD8330004A68B /* QualificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationsViewController.swift; sourceTree = "<group>"; };
 		72BD20A527EFD8330004A68B /* QualificationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QualificationsViewController.xib; sourceTree = "<group>"; };
 		72BD20A827EFD8570004A68B /* RegisterQualificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterQualificationsViewController.swift; sourceTree = "<group>"; };
-		72BD20A927EFD8570004A68B /* RegisterQualificationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterQualificationsViewController.xib; sourceTree = "<group>"; };
 		72BD20AD27EFD8FF0004A68B /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
 		72BD20AF27EFE7F00004A68B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		72BD20B327F044C90004A68B /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -130,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				72BD20A827EFD8570004A68B /* RegisterQualificationsViewController.swift */,
-				72BD20A927EFD8570004A68B /* RegisterQualificationsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +178,7 @@
 			children = (
 				72BD20B227F044AB0004A68B /* Extension */,
 				72BD20AF27EFE7F00004A68B /* BaseViewController.swift */,
+				721FAD5D27F14A79000D85C3 /* SDCTextField.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -257,7 +257,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				72BD209227EFD4E80004A68B /* LaunchScreen.storyboard in Resources */,
-				72BD20AB27EFD8570004A68B /* RegisterQualificationsViewController.xib in Resources */,
 				72BD208F27EFD4E80004A68B /* Assets.xcassets in Resources */,
 				72BD20A727EFD8330004A68B /* QualificationsViewController.xib in Resources */,
 			);
@@ -278,6 +277,7 @@
 				72BD208627EFD4E70004A68B /* AppDelegate.swift in Sources */,
 				72BD20AE27EFD8FF0004A68B /* DataPersistence.swift in Sources */,
 				72BD208827EFD4E70004A68B /* SceneDelegate.swift in Sources */,
+				721FAD5E27F14A79000D85C3 /* SDCTextField.swift in Sources */,
 				72BD20B027EFE7F00004A68B /* BaseViewController.swift in Sources */,
 				72BD209B27EFD68A0004A68B /* QualificationsTabBar.swift in Sources */,
 			);

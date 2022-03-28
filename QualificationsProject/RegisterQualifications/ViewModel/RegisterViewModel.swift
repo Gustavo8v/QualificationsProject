@@ -9,7 +9,6 @@ import Foundation
 
 class RegisterViewModel {
     
-    let subjectsQua = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     let grades = ["1 Semestre", "2 Semestre", "3 Semestre", "4 Semestre"]
     
     func saveRegister(name: String,

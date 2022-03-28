@@ -9,6 +9,11 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+    }
+    
     let titleNav = "Mentes Creativas"
     
     enum TypeNavBar {
@@ -37,7 +42,7 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func checkTextFields(textFields: [UITextField]) -> Bool {
+    func checkTextFields(textFields: [SDCTextField]) -> Bool {
         var value = true
         textFields.forEach { textField in
             if textField.text == "" || textField.text == nil {
@@ -47,7 +52,7 @@ class BaseViewController: UIViewController {
         return value
     }
     
-    func returnQualifications(textFields: [UITextField]) -> [Int]{
+    func returnQualifications(textFields: [SDCTextField]) -> [Int]{
         var qualifications = [Int]()
         textFields.forEach { textField in
             guard let qua = Int(textField.text ?? "0") else { return }
@@ -56,7 +61,7 @@ class BaseViewController: UIViewController {
         return qualifications
     }
     
-    func checkAverage(subs: [UITextField]) -> Double {
+    func checkAverage(subs: [SDCTextField]) -> Double {
         var qualifications = [Int]()
         subs.forEach { sub in
             guard let qua = Int(sub.text ?? "0") else { return }
@@ -71,7 +76,7 @@ class BaseViewController: UIViewController {
         return aver
     }
     
-    func tagTextField(textFields: [UITextField], view: RegisterQualificationsViewController) {
+    func tagTextField(textFields: [SDCTextField], view: RegisterQualificationsViewController) {
         var tag = 0
         textFields.forEach { textField in
             textField.tag = tag

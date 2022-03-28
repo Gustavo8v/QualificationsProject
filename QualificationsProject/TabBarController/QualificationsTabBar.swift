@@ -17,8 +17,8 @@ class QualificationsTabBar: UITabBarController, UITabBarControllerDelegate {
     }
     
     func chargeViewTabBar(){
-        let registerQualifications = UINavigationController(rootViewController: RegisterQualificationsViewController())
-        let qualifications = UINavigationController(rootViewController: QualificationsViewController())
+        let registerQualifications = UINavigationController(rootViewController: RegisterQualificationsViewController(nibName: nil, bundle: nil))
+        let qualifications = UINavigationController(rootViewController: QualificationsViewController(nibName: nil, bundle: nil))
         let registerTabBar = UITabBarItem(title: "Registro", image: UIImage(systemName: "person.crop.circle.badge.plus"), selectedImage: UIImage(systemName: "person.crop.circle.badge.plus"))
         let qualificationsTabBar = UITabBarItem(title: "Calificaciones", image: UIImage(systemName: "list.bullet.rectangle.portrait"), selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait"))
         registerQualifications.tabBarItem = registerTabBar
