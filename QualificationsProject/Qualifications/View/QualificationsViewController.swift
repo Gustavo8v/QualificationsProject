@@ -24,15 +24,19 @@ class QualificationsViewController: BaseViewController {
         segment.addTarget(self, action: #selector(segmentedValueChanged(_:)), for: .valueChanged)
         return segment
     }()
+    
+    let search: UISearchBar = {
+        let search = UISearchBar()
+        return search
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         data = viewModel.allStudents()
         tableView.delegate = self
         tableView.dataSource = self
-        navigationItem.title = titleNav
-        setNavBar(type: .search, action: nil)
-        print("😏\(viewModel.students.count)")
+        search.delegate = self
+        search.searchTextField.inputAccessoryView = toolbar
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +47,7 @@ class QualificationsViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         view.addSubview(tableView)
         view.addSubview(segment)
+        navigationItem.titleView = search
         segment.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -85,5 +90,16 @@ extension QualificationsViewController: UITableViewDelegate, UITableViewDataSour
         guard let cell = tableView.dequeueReusableCell(withIdentifier: QualificationTableViewCell.identifier, for: indexPath) as? QualificationTableViewCell else { return UITableViewCell() }
         cell.configureDataCell(data: data[indexPath.row])
         return cell
+    }
+}
+
+extension QualificationsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        data = viewModel.filterWithName(name: searchText)
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

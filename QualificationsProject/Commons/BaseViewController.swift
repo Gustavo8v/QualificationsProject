@@ -9,30 +9,28 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    let titleNav = "Mentes Creativas"
+    let toolbar = UIToolbar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.title = titleNav
+        addToolBar()
     }
     
-    let titleNav = "Mentes Creativas"
-    
-    enum TypeNavBar {
-        case search
-        case add
+    func addToolBar(){
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                                target: nil, action: nil)
+                let doneButton = UIBarButtonItem(title: "Cancelar", style: .done,
+                                                 target: self, action: #selector(dismissKeyboard))
+                
+                toolbar.setItems([flexSpace, doneButton], animated: true)
+                toolbar.sizeToFit()
     }
     
-    func setNavBar(type: TypeNavBar, action: Selector?){
-        switch type {
-        case .search:
-            let searchBar = UISearchBar()
-            navigationItem.titleView = searchBar
-        case .add:
-            let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"),
-                                            style: .plain,
-                                            target: self,
-                                            action: action)
-            navigationItem.rightBarButtonItem = addButton
-        }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func addViewsCustom(view: UIView, views: [UIView]){

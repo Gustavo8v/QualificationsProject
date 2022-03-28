@@ -59,4 +59,19 @@ class QualificationsModelView {
         }
         return fourt
     }
+    
+    func filterWithName(name: String) -> [QualificationRealm] {
+        var filter = [QualificationRealm]()
+        if name == "" {
+            return allStudents()
+        } else {
+            students.forEach { nameFilter in
+                if nameFilter.name.contains(name) {
+                    filter.append(nameFilter)
+                }
+            }
+            return filter
+        }
+        
+    }
 }
