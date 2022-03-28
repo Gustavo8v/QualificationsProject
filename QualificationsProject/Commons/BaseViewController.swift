@@ -42,40 +42,6 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func checkTextFields(textFields: [SDCTextField]) -> Bool {
-        var value = true
-        textFields.forEach { textField in
-            if textField.text == "" || textField.text == nil {
-                value = false
-            }
-        }
-        return value
-    }
-    
-    func returnQualifications(textFields: [SDCTextField]) -> [Int]{
-        var qualifications = [Int]()
-        textFields.forEach { textField in
-            guard let qua = Int(textField.text ?? "0") else { return }
-            qualifications.append(qua)
-        }
-        return qualifications
-    }
-    
-    func checkAverage(subs: [SDCTextField]) -> Double {
-        var qualifications = [Int]()
-        subs.forEach { sub in
-            guard let qua = Int(sub.text ?? "0") else { return }
-            qualifications.append(qua)
-        }
-        var sum = 0
-        var aver: Double = 0.0
-        qualifications.forEach { sub in
-            sum = sum + sub
-        }
-        aver = Double(sum) / 4
-        return aver
-    }
-    
     func tagTextField(textFields: [SDCTextField], view: RegisterQualificationsViewController) {
         var tag = 0
         textFields.forEach { textField in

@@ -1,8 +1,8 @@
 //
-//  RegisterQualificationsViewController.swift
+//  RegisterViewController.swift
 //  QualificationsProject
 //
-//  Created by Gustavo on 26/03/22.
+//  Created by Gustavo on 27/03/22.
 //
 
 import UIKit
@@ -153,8 +153,6 @@ class RegisterQualificationsViewController: BaseViewController {
     }
     
     @objc func changeStateButton(_ textField: UITextField){
-        var aver = 0.0
-        var count = 4
         var enabled = true
         var color = UIColor.systemBlue
         for case let textField as SDCTextField in scrollView.subviews {
@@ -163,17 +161,14 @@ class RegisterQualificationsViewController: BaseViewController {
                 color = .lightGray
             }
         }
-        [mathematics, history, science, art].forEach({
-            if $0.text != "" {
-                count -= 1
-                aver = aver + (Double($0.text ?? "") ?? .zero)
-                if count == 0 {
-                    DispatchQueue.main.async {
-                        self.average.text = Double(aver/4).description
-                    }
-                }
+        viewModel.checkAverage(av: [mathematics.text,
+                                    history.text,
+                                    science.text,
+                                    art.text]) { av in
+            DispatchQueue.main.async {
+                self.average.text = av
             }
-        })
+        }
         self.saveQualification.isEnabled = enabled
         DispatchQueue.main.async {
             self.saveQualification.backgroundColor = color
@@ -181,10 +176,10 @@ class RegisterQualificationsViewController: BaseViewController {
     }
     
     @objc func showAverage() {
-        let qualifications = [mathematics, history, science, art]
-        let show = checkTextFields(textFields: qualifications)
+        let qualifications = [mathematics.text, history.text, science.text, art.text]
+        let show = viewModel.checkTextFields(textFields: qualifications)
         if show {
-            let average = checkAverage(subs: qualifications)
+            let average = viewModel.checkAverage(subs: qualifications)
             DispatchQueue.main.async {
                 self.average.text = average.description
             }
@@ -192,22 +187,21 @@ class RegisterQualificationsViewController: BaseViewController {
     }
     
     @objc func addNewRegister(){
-        let save = checkTextFields(textFields: [nameStudent, lastNameStudent, numberGrade, mathematics, history, science, art])
-        if save {
-            let average = checkAverage(subs: [mathematics, history, science, art])
-            viewModel.saveRegister(name: nameStudent.text ?? "",
-                                   lastName: lastNameStudent.text ?? "",
-                                   grade: numberGrade.text ?? "",
-                                   math: mathematics.text ?? "",
-                                   history: history.text ?? "",
-                                   science: science.text ?? "",
-                                   art: art.text ?? "",
-                                   average: String(average)) {
-                for case let textField as SDCTextField in self.scrollView.subviews {
-                    textField.text = nil
-                }
+        let average = viewModel.checkAverage(subs: [mathematics.text, history.text, science.text, art.text])
+        viewModel.saveRegister(name: nameStudent.text ?? "",
+                               lastName: lastNameStudent.text ?? "",
+                               grade: numberGrade.text ?? "",
+                               math: mathematics.text ?? "",
+                               history: history.text ?? "",
+                               science: science.text ?? "",
+                               art: art.text ?? "",
+                               average: String(average)) {
+            for case let textField as SDCTextField in self.scrollView.subviews {
+                textField.text = nil
             }
             self.average.text = "El priomedio se calculará en automático al llenar todas las materias"
+            self.nameStudent.resignFirstResponder()
+            self.viewModel.goToQualification(vc: self)
         }
     }
 }
