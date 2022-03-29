@@ -148,7 +148,7 @@ class RegisterQualificationsViewController: BaseViewController {
         ])
         for case let textField as SDCTextField in scrollView.subviews {
             textField.addTarget(self, action: #selector(changeStateButton(_:)), for: .editingChanged)
-            textField.inputAccessoryView = toolbar
+            textField.addDoneCancelToolbar()
         }
     }
     

@@ -27,6 +27,7 @@ class QualificationsViewController: BaseViewController {
     
     let search: UISearchBar = {
         let search = UISearchBar()
+        search.searchTextField.addDoneCancelToolbar()
         return search
     }()
 
@@ -36,7 +37,6 @@ class QualificationsViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         search.delegate = self
-        search.searchTextField.inputAccessoryView = toolbar
     }
     
     override func viewDidAppear(_ animated: Bool) {
