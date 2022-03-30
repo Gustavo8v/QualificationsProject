@@ -33,14 +33,14 @@ class QualificationsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = viewModel.allStudents()
         tableView.delegate = self
         tableView.dataSource = self
         search.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        data = viewModel.allStudents()
         tableView.reloadData()
     }
     

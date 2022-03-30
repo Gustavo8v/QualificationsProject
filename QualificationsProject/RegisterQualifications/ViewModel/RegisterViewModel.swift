@@ -70,10 +70,12 @@ class RegisterViewModel {
         return value
     }
     
-    func checkAverage(subs: [String?]) -> Double {
+    func checkAverage(subs: [String?]) -> String {
         var qualifications = [Int]()
+        var fullQualification = 4
         subs.forEach { sub in
-            guard let qua = Int(sub ?? "0") else { return }
+            guard let qua = Int(sub ?? "") else { return }
+            fullQualification -= 1
             qualifications.append(qua)
         }
         var sum = 0
@@ -81,7 +83,11 @@ class RegisterViewModel {
         qualifications.forEach { sub in
             sum = sum + sub
         }
-        aver = Double(sum) / 4
-        return aver
+        if fullQualification == 0 {
+            aver = Double(sum) / 4
+            return aver.description
+        } else {
+            return "El promedio se calculara en automático con todas las calificaciones"
+        }
     }
 }
