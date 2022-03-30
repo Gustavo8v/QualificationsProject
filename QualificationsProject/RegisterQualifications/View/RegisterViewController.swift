@@ -54,7 +54,7 @@ class RegisterQualificationsViewController: BaseViewController {
         self.art.configureTextField(keyboard: .numberPad, placeHolder: "Artes")
         self.art.valueType = .onlyNumbers
         self.art.maxLength = 2
-        average.text = "El priomedio se calculará en automático al llenar todas las materias"
+        average.text = "El promedio se calculará en automático al llenar todas las materias"
         average.adjustsFontSizeToFitWidth = true
         average.numberOfLines = 2
         average.textAlignment = .center
